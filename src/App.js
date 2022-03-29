@@ -5,7 +5,7 @@ import Header from "./components/Header";
 export default function App() {
   return (
     <div className="App screen-container">
-      <Header type={true} />
+      <Header type={false} />
       <Routes>
         <Route path="/" element={<AuthenticationScreen />} />
         <Route path="/auth" element={<AuthenticationScreen />} />
