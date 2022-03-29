@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.screen-container {
+  @apply m-4 max-w-full;
+}
