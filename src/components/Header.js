@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Logo from '../assets/logo.svg';
 
 export default function Header({type}) {
@@ -10,7 +11,9 @@ export default function Header({type}) {
     if (headerTypeRef) {
         return (
             <div className="header-after-login flex flex-row items-center justify-between">
-                <img src={Logo} alt="devumble" className="w-auto h-auto" />
+                <Link to="/">
+                    <img src={Logo} alt="devumble" className="w-auto h-auto" />
+                </Link>
                 <button className="flex flex-row items-center gap-2 px-3 py-1.5 rounded-md bg-white hover:bg-gray-100">
                     <span className="logout-icon-wrapper w-fit h-fit">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="m-0">
@@ -25,7 +28,9 @@ export default function Header({type}) {
     } else {
         return (
             <div className="header-default">
-                <img src={Logo} alt="devumble" className="w-auto h-auto" />
+                <Link to="/">
+                    <img src={Logo} alt="devumble" className="w-auto h-auto" />
+                </Link>
             </div>
         ) 
     }

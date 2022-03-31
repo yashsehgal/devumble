@@ -6,7 +6,7 @@ import ProfileCustomization from "./screens/ProfileCustomization";
 export default function App() {
   return (
     <div className="App screen-container">
-      <Header type={false} />
+      <Header type={true} />
       <Routes>
         <Route path="/" element={<AuthenticationScreen />} />
         <Route path="/auth" element={<AuthenticationScreen />} />
