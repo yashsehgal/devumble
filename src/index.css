@@ -1,7 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-.screen-container {
-  @apply m-4 mt-8 mb-12 mx-24 max-w-full;
-}
