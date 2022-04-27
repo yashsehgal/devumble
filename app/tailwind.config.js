@@ -7,6 +7,9 @@ module.exports = {
       "./src/**/**/**/*.{js,jsx,ts,tsx}",
     ],
     theme: {
+      fontFamily: {
+        'product': ['Plus Jakarta Sans', 'sans-serif']
+      },
       extend: {},
     },
     plugins: [],
