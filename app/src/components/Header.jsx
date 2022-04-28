@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { FaTimes } from 'react-icons/fa';
+import { FaArrowRight, FaTimes } from 'react-icons/fa';
 
 import ReactModal from 'react-modal';
 
@@ -165,9 +165,15 @@ export default function Header({HEADER_STATE}) {
                             <FaTimes />
                         </button>
                     </div>
-                    
+                    <div className='get-started-popup-content-wrapper mt-4 flex flex-col gap-3 w-auto h-auto items-stretch'>
+                        <button className='w-fit px-4 mx-auto h-auto py-1.5 bg-white bg-opacity-20 rounded-md text-white font-semibold flex flex-row items-center justify-center gap-3'>
+                            Login to Devumble using GitHub <FaArrowRight />
+                        </button>
+                        <button className='w-fit px-4 mx-auto h-auto py-1.5 gradient rounded-md text-white font-semibold flex flex-row items-center justify-center gap-3'>
+                            Create account using GitHub <FaArrowRight />
+                        </button>
+                    </div>
                 </ReactModal>
-
             </React.Fragment>    
         )
     }

@@ -7,7 +7,7 @@ export default function Landing() {
     return (
         <React.Fragment>
             <div className='landing-page screen-container'>
-                <div className='hero-section-container mt-12'>
+                <div className='hero-section-container mt-8'>
                     <h1 className='font-product text-white leading-snug font-bold text-5xl text-center w-[24ch] mx-auto'>
                         start your <span className="gradient-text">journey</span> to find your pair programming <span className="gradient-text">partner</span>
                     </h1>
