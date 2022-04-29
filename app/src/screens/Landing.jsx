@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { getUserData } from '../api-middleware/github-api';
+import { getUserData, getUserData_fromGitHub_forDevumbleProfile } from '../api-middleware/github-api';
 
-import { FaGithub, FaArrowRight } from 'react-icons/fa'
+import { FaGithub, FaArrowRight } from 'react-icons/fa';
 
 export default function Landing() {
+    const [continueButtonActiveStateRef, setContinueButtonActiveState] = useState(false);
     return (
         <React.Fragment>
             <div className='landing-page screen-container'>
@@ -19,12 +20,23 @@ export default function Landing() {
                             <input type="text" placeholder='GitHub Username'
                                 className='bg-transparent focus:border-0 focus:outline-none focus:border-transparent text-white w-[260px]'
                                 id="landing-page-section__github-username-input"
+                                onChange={(usernameInput) => {
+                                    if (usernameInput.target.value.length > 0) {
+                                        setContinueButtonActiveState(true);
+                                    } else {
+                                        setContinueButtonActiveState(false);
+                                    }
+                                }}
                             />
-                            <button className='px-4 py-2 gradient text-white font-product text-sm flex flex-row items-center justify-center gap-2 font-normal rounded-full transition-all transform hover:shadow-2xl'
+                            <button 
+                                className={continueButtonActiveStateRef 
+                                    ? `px-4 py-2 gradient text-white font-product text-sm flex flex-row items-center justify-center gap-2 font-normal rounded-full hover:shadow-2xl`
+                                    : `px-4 py-2 bg-white bg-opacity-30 text-gray-400 font-product text-sm flex flex-row items-center justify-center gap-2 font-normal rounded-full hover:shadow-2xl cursor-not-allowed`}
                                 onClick={()=> {
                                     let githubUsernameInputValue = document.getElementById('landing-page-section__github-username-input').value;
                                     if (githubUsernameInputValue !== null && githubUsernameInputValue !== undefined && githubUsernameInputValue !== "") {
-                                        
+                                        let githubAPIResponse_forUsername = getUserData_fromGitHub_forDevumbleProfile(githubUsernameInputValue);
+                                        console.log(githubAPIResponse_forUsername);
                                     }
                                 }}
                             >
