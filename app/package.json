@@ -46,6 +46,7 @@
     "react-router-dom": "^6.2.2",
     "react-tinder-card": "^1.4.5",
     "react-tooltip": "^4.2.21",
+    "redux": "^4.2.0",
     "tailwindcss": "^3.0.23"
   }
 }

@@ -77,7 +77,7 @@ export default function Header({HEADER_STATE}) {
                             </div>
                         </Link>
                         <div className='header-options-list-wrapper'>
-                            <ul className='header-options-list flex flex-row items-center gap-4'>
+                            <ul className='header-options-list flex flex-row items-center gap-6'>
                                 {headerOptionsRef.map((option, index) => {
                                     if (option.type === 'link') {
                                         return (

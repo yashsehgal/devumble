@@ -6,9 +6,25 @@ const BASE_URL = 'https://api.github.com/';
 
 async function getUserData(username=null) {
     if (!username) return;
+    let response = {
+        data: null,
+        message: null
+    }
     const res = await fetch(BASE_URL + `users/${username}`);
     const githubResponse = await res.json();
-    return githubResponse;
+
+    if (githubResponse.message && githubResponse.message.toLowerCase() === "not found") {
+        response = {
+            data: null,
+            message: false
+        }
+    } else {
+        response = {
+            data: githubResponse,
+            message: true
+        }
+    }
+    return response;
 }
 
 async function getUserRepositories(username=null) {
