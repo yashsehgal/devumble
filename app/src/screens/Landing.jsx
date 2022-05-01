@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { getUserData, getUserData_fromGitHub_forDevumbleProfile } from '../api-middleware/github-api';
 
 import { FaGithub, FaArrowRight } from 'react-icons/fa';
+import { getUserData_fromLocalStorage_forDevumbleProfile, saveUserData_inLocalStorage_fromGitHub_forDevumbleProfile } from '../utils/local-storage';
 
 export default function Landing() {
     const [continueButtonActiveStateRef, setContinueButtonActiveState] = useState(false);
@@ -32,11 +33,16 @@ export default function Landing() {
                                 className={continueButtonActiveStateRef 
                                     ? `px-4 py-2 gradient text-white font-product text-sm flex flex-row items-center justify-center gap-2 font-normal rounded-full hover:shadow-2xl`
                                     : `px-4 py-2 bg-white bg-opacity-30 text-gray-400 font-product text-sm flex flex-row items-center justify-center gap-2 font-normal rounded-full hover:shadow-2xl cursor-not-allowed`}
-                                onClick={()=> {
+                                onClick={async () => {
                                     let githubUsernameInputValue = document.getElementById('landing-page-section__github-username-input').value;
                                     if (githubUsernameInputValue !== null && githubUsernameInputValue !== undefined && githubUsernameInputValue !== "") {
-                                        let githubAPIResponse_forUsername = getUserData_fromGitHub_forDevumbleProfile(githubUsernameInputValue);
-                                        console.log(githubAPIResponse_forUsername);
+                                        let githubAPIResponse_forUsername = await getUserData_fromGitHub_forDevumbleProfile(githubUsernameInputValue);
+                                        if (saveUserData_inLocalStorage_fromGitHub_forDevumbleProfile(githubAPIResponse_forUsername)) {
+                                            // data saved successfully
+                                            window.location.href = "/create-profile";
+                                        } else {
+                                            console.log('something went wrong');
+                                        }
                                     }
                                 }}
                             >
