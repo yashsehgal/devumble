@@ -10,7 +10,7 @@ body {
 }
 
 .screen-container {
-  @apply m-4 mt-8 mb-12 mx-24 max-w-full;
+  @apply m-4 mt-5 mb-12 mx-24 max-w-full;
 }
 
 .gradient {
