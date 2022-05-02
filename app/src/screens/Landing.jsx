@@ -2,10 +2,42 @@ import React, { useState } from 'react';
 import { getUserData, getUserData_fromGitHub_forDevumbleProfile } from '../api-middleware/github-api';
 
 import { FaGithub, FaArrowRight } from 'react-icons/fa';
-import { getUserData_fromLocalStorage_forDevumbleProfile, saveUserData_inLocalStorage_fromGitHub_forDevumbleProfile } from '../utils/local-storage';
+
+import { ToastContainer, toast } from 'react-toastify';
+
+import { getUserData_fromLocalStorage_forDevumbleProfile, saveUserData_inLocalStorage_fromGitHub_forDevumbleProfile, setLoggedInStatus_toLocalStorage } from '../utils/local-storage';
 
 export default function Landing() {
     const [continueButtonActiveStateRef, setContinueButtonActiveState] = useState(false);
+    const notifier = (message, type) => {
+        switch(type) {
+            case "success": 
+                toast.success(message, {
+                    position: toast.POSITION.TOP_CENTER
+                });
+            break;
+            case "warning":
+                toast.warn(message, {
+                    position: toast.POSITION.TOP_LEFT
+                });
+            break;
+            case "error":
+                toast.error(message, {
+                    position: toast.POSITION.BOTTOM_RIGHT
+                });
+            break;
+            case "info":
+                toast.info(message, {
+                    position: toast.POSITION.BOTTOM_LEFT
+                });
+            break;
+            default:
+                toast(message, {
+                    className: 'react-toastify__dark'
+                });
+            break;
+        }
+    }
     return (
         <React.Fragment>
             <div className='landing-page screen-container'>
@@ -29,9 +61,10 @@ export default function Landing() {
                                             if (saveUserData_inLocalStorage_fromGitHub_forDevumbleProfile(githubAPIResponse_forUsername)) {
                                                 // data saved successfully
                                                 window.location.href = "/create-profile";
-                                            } else {
-                                                console.log('something went wrong');
+                                                setLoggedInStatus_toLocalStorage(true);
                                             }
+                                        } else {
+                                            notifier("Please provide your github username", "error");
                                         }
                                     }
                                 }}
@@ -43,6 +76,7 @@ export default function Landing() {
                                     }
                                 }}
                             />
+                            <ToastContainer className="react-toastify__dark" />
                             <button 
                                 className={continueButtonActiveStateRef 
                                     ? `px-4 py-2 gradient text-white font-product text-sm flex flex-row items-center justify-center gap-2 font-normal rounded-full hover:shadow-2xl`
@@ -54,9 +88,10 @@ export default function Landing() {
                                         if (saveUserData_inLocalStorage_fromGitHub_forDevumbleProfile(githubAPIResponse_forUsername)) {
                                             // data saved successfully
                                             window.location.href = "/create-profile";
-                                        } else {
-                                            console.log('something went wrong');
+                                            setLoggedInStatus_toLocalStorage(true);
                                         }
+                                    } else {
+                                        notifier("Please provide your github username", "error");
                                     }
                                 }}
                             >

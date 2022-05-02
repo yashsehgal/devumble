@@ -27,3 +27,8 @@ body {
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.react-toastify__dark {
+  background: black;
+  color: white;
+}

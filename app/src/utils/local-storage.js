@@ -20,4 +20,12 @@ function getUserData_fromLocalStorage_forDevumbleProfile() {
     ]
 }
 
-export { saveUserData_inLocalStorage_fromGitHub_forDevumbleProfile, getUserData_fromLocalStorage_forDevumbleProfile };
+function setLoggedInStatus_toLocalStorage(status=false) {
+    localStorage.setItem('isLoggedIn', status);
+}
+
+export { 
+    saveUserData_inLocalStorage_fromGitHub_forDevumbleProfile, 
+    getUserData_fromLocalStorage_forDevumbleProfile, 
+    setLoggedInStatus_toLocalStorage
+};
