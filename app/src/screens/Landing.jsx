@@ -21,6 +21,20 @@ export default function Landing() {
                             <input type="text" placeholder='GitHub Username'
                                 className='bg-transparent focus:border-0 focus:outline-none focus:border-transparent text-white w-[260px]'
                                 id="landing-page-section__github-username-input"
+                                onKeyDown={async(keyPressEvent) => {
+                                    if (keyPressEvent.code.toLowerCase() === 'enter') {
+                                        let githubUsernameInputValue = document.getElementById('landing-page-section__github-username-input').value;
+                                        if (githubUsernameInputValue !== null && githubUsernameInputValue !== undefined && githubUsernameInputValue !== "") {
+                                            let githubAPIResponse_forUsername = await getUserData_fromGitHub_forDevumbleProfile(githubUsernameInputValue);
+                                            if (saveUserData_inLocalStorage_fromGitHub_forDevumbleProfile(githubAPIResponse_forUsername)) {
+                                                // data saved successfully
+                                                window.location.href = "/create-profile";
+                                            } else {
+                                                console.log('something went wrong');
+                                            }
+                                        }
+                                    }
+                                }}
                                 onChange={(usernameInput) => {
                                     if (usernameInput.target.value.length > 0) {
                                         setContinueButtonActiveState(true);
