@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { getUserData_fromLocalStorage_forDevumbleProfile } from "../utils/local-storage";
+import { getUserData_fromLocalStorage_forDevumbleProfile, saveDataToLocalStorage } from "../utils/local-storage";
 
 import { checkIfStringNull } from "../utils/NullCheck";
 
@@ -70,11 +70,14 @@ export default function CreateProfile() {
                     <div className="grid grid-cols-2 items-center justify-between w-full">
                         <div className="gender-input-wrapper flex flex-col items-start gap-1">
                             <label id="gender" className="text-sm text-white leading-snug">Select your Gender</label>
-                            <select className="px-2 py-1.5 rounded-md border bg-black border-gray-600 hover:border-gray-500 text-white w-auto" required>
+                            <select className="px-2 py-1.5 rounded-md border bg-black border-gray-600 hover:border-gray-500 text-white w-auto" required
+                                id="create-profile__gender-title-input"
+                            >
                                 <option value="none" selected disabled>Select</option>
                                 <option value="he">He/Him</option>
                                 <option value="she">She/Her</option>
                                 <option value="they">They/Them</option>
+                                <option value="not-specified">Rather not mention</option>
                             </select>
                         </div>
                         <div className="location-input-wrapper flex flex-col items-start gap-1">
@@ -96,10 +99,46 @@ export default function CreateProfile() {
                             }
                             if (checkIfStringNull(document.getElementById('create-profile__location-input').value)
                                 && checkIfStringNull(document.getElementById("create-profile__display-name-input").value)) {
-                                    notifier("Profile Data Saved", "success");
-                                    setTimeout(() => {
-                                        window.location.href = "/upload-photos";
-                                    }, 1000);
+                                    // WRITE METHOD TO UPDATE AND STORE THE USER PROFILE DATA
+                                    let profileDisplayName_Updated = document.getElementById('create-profile__display-name-input').value;
+                                    let profileLocation_Updated = document.getElementById("create-profile__location-input").value;
+                                    let profileGenderTitle_Updated;
+
+                                    switch (document.getElementById('create-profile__gender-title-input').value) {
+                                        case "he":
+                                            profileGenderTitle_Updated = "he";
+                                        break;
+                                        case "she":
+                                            profileGenderTitle_Updated = "she";
+                                        break;
+                                        case "they":
+                                            profileGenderTitle_Updated = "they";
+                                        break;
+                                        case "not-specified":
+                                            profileGenderTitle_Updated = "not-specified";
+                                        break;
+                                        default:
+                                            profileGenderTitle_Updated = null;
+                                            notifier("Please select your gender", "warning");
+                                        break;
+                                    }
+
+                                    let updatedProfileData = {
+                                        displayName: profileDisplayName_Updated,
+                                        location: profileLocation_Updated,
+                                        gender: profileGenderTitle_Updated ? profileGenderTitle_Updated : null
+                                    };
+
+                                    if (updatedProfileData.gender) {
+                                        if (saveDataToLocalStorage(updatedProfileData, "devumble-profile-data")) {
+                                            notifier("Profile Data Saved", "success");
+                                            setTimeout(() => {
+                                                window.location.href = "/upload-photos";
+                                            }, 1000);
+                                        } else {
+                                            notifier("Something went wrong", "error");
+                                        }
+                                    }
                             }
                         }}
                     >
@@ -107,7 +146,7 @@ export default function CreateProfile() {
                     </button>
                 </div>
             </div>
-            <ToastContainer className="react-toastify__dark" />
+            <ToastContainer />
         </React.Fragment>
     )
 }

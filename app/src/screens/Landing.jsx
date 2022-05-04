@@ -109,7 +109,7 @@ export default function Landing() {
                     </div>
                 </div>
             </div>
-            <ToastContainer className="react-toastify__dark" />
+            <ToastContainer />
         </React.Fragment>
     )
 }

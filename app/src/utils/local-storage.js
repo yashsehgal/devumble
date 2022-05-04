@@ -1,4 +1,10 @@
 
+function saveDataToLocalStorage(data=null, location=null) { 
+    if (!data || !location) return false;
+    localStorage.setItem(location, data);
+    return true;
+}
+
 function saveUserData_inLocalStorage_fromGitHub_forDevumbleProfile(data=null) {
     if (!data) return false;
 
@@ -27,5 +33,6 @@ function setLoggedInStatus_toLocalStorage(status=false) {
 export { 
     saveUserData_inLocalStorage_fromGitHub_forDevumbleProfile, 
     getUserData_fromLocalStorage_forDevumbleProfile, 
-    setLoggedInStatus_toLocalStorage
+    setLoggedInStatus_toLocalStorage,
+    saveDataToLocalStorage
 };
