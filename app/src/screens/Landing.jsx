@@ -76,7 +76,6 @@ export default function Landing() {
                                     }
                                 }}
                             />
-                            <ToastContainer className="react-toastify__dark" />
                             <button 
                                 className={continueButtonActiveStateRef 
                                     ? `px-4 py-2 gradient text-white font-product text-sm flex flex-row items-center justify-center gap-2 font-normal rounded-full hover:shadow-2xl`
@@ -110,6 +109,7 @@ export default function Landing() {
                     </div>
                 </div>
             </div>
+            <ToastContainer className="react-toastify__dark" />
         </React.Fragment>
     )
 }

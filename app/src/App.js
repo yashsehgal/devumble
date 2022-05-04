@@ -6,6 +6,7 @@ import CreateProfile from './screens/CreateProfile';
 import 'react-toastify/dist/ReactToastify.css';
 
 import Landing from './screens/Landing';
+import AddPhotos from './screens/AddPhotos';
 
 export default function App() {
   const [isLoogedInRef, setIsLoggedIn] = useState(false);
@@ -18,6 +19,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/create-profile" element={<CreateProfile />} />
+        <Route path="/upload-photos" element={<AddPhotos />} />
       </Routes>
     </React.Fragment>
   )

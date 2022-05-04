@@ -1,8 +1,41 @@
 import React, { useState } from "react";
 import { getUserData_fromLocalStorage_forDevumbleProfile } from "../utils/local-storage";
 
+import { checkIfStringNull } from "../utils/NullCheck";
+
+import { ToastContainer, toast } from 'react-toastify';
+
 export default function CreateProfile() {
     const [tempUserDataFromLocalStorageRef, setTempUserDataFromLocalStorage] = useState(getUserData_fromLocalStorage_forDevumbleProfile());
+    const notifier = (message, type) => {
+        switch(type) {
+            case "success": 
+                toast.success(message, {
+                    position: toast.POSITION.TOP_CENTER
+                });
+            break;
+            case "warning":
+                toast.warn(message, {
+                    position: toast.POSITION.TOP_LEFT
+                });
+            break;
+            case "error":
+                toast.error(message, {
+                    position: toast.POSITION.BOTTOM_RIGHT
+                });
+            break;
+            case "info":
+                toast.info(message, {
+                    position: toast.POSITION.BOTTOM_LEFT
+                });
+            break;
+            default:
+                toast(message, {
+                    className: 'react-toastify__dark'
+                });
+            break;
+        }
+    }
     return (
         <React.Fragment>
             <div className="create-profile-wrapper screen-container -mt-6">
@@ -29,13 +62,15 @@ export default function CreateProfile() {
                     <div className="display-name-input-wrapper flex flex-col items-start gap-1 w-full">
                         <label id="display-name" className="text-sm text-white leading-snug">Display Name / Full Name</label>
                         <input className="px-2 py-1.5 rounded-md bg-transparent border border-gray-600 w-full hover:border-gray-500 text-white" 
-                            name="display-name" defaultValue={tempUserDataFromLocalStorageRef.data.displayName}
+                            name="display-name" defaultValue={tempUserDataFromLocalStorageRef.data.displayName} 
+                            id="create-profile__display-name-input"
+                            required
                         />
                     </div>
                     <div className="grid grid-cols-2 items-center justify-between w-full">
                         <div className="gender-input-wrapper flex flex-col items-start gap-1">
                             <label id="gender" className="text-sm text-white leading-snug">Select your Gender</label>
-                            <select className="px-2 py-1.5 rounded-md border bg-black border-gray-600 hover:border-gray-500 text-white w-auto">
+                            <select className="px-2 py-1.5 rounded-md border bg-black border-gray-600 hover:border-gray-500 text-white w-auto" required>
                                 <option value="none" selected disabled>Select</option>
                                 <option value="he">He/Him</option>
                                 <option value="she">She/Her</option>
@@ -45,15 +80,34 @@ export default function CreateProfile() {
                         <div className="location-input-wrapper flex flex-col items-start gap-1">
                             <label id="location" className="text-sm text-white leading-snug">Location</label>
                             <input className="px-2 py-1.5 rounded-md bg-transparent border border-gray-600 hover:border-gray-500 text-white w-auto" 
-                                name="location"
+                                name="location" 
+                                id="create-profile__location-input"
+                                required
                             />
                         </div>
                     </div>
-                    <button className="py-2 w-full rounded-md gradient text-white font-normal text-sm">
+                    <button role="submit" className="py-2 w-full rounded-md gradient text-white font-normal text-sm"
+                        onClick={() => {
+                            if (!checkIfStringNull(document.getElementById("create-profile__location-input").value)) {
+                                notifier("Please provide your location", "error");
+                            }
+                            if (!checkIfStringNull(document.getElementById("create-profile__display-name-input").value)) {
+                                notifier("Please create a display name for your profile. HINT: Keep it short and cool", "error");
+                            }
+                            if (checkIfStringNull(document.getElementById('create-profile__location-input').value)
+                                && checkIfStringNull(document.getElementById("create-profile__display-name-input").value)) {
+                                    notifier("Profile Data Saved", "success");
+                                    setTimeout(() => {
+                                        window.location.href = "/upload-photos";
+                                    }, 1000);
+                            }
+                        }}
+                    >
                         Save and Continue
                     </button>
                 </div>
             </div>
+            <ToastContainer className="react-toastify__dark" />
         </React.Fragment>
     )
 }
