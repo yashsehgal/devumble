@@ -1,7 +1,5 @@
 // api-middleware for all the frontend related API calls
 
-const axios = require('axios');
-
 const BASE_URL = 'https://api.github.com/';
 
 async function getUserData(username=null) {
@@ -14,12 +12,12 @@ async function getUserData(username=null) {
     const githubResponse = await res.json();
 
     if (githubResponse.message && githubResponse.message.toLowerCase() === "not found") {
-        response = {
+        response = await {
             data: null,
             message: false
         }
     } else {
-        response = {
+        response = await {
             data: githubResponse,
             message: true
         }

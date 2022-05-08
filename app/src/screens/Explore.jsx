@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { createDemoUserData } from "../utils/user-db";
 
 export default function Explore() {
-    const [userDataRef, setUserData] = useState(createDemoUserData());
-    useEffect(() => {
-        setUserData(createDemoUserData());
-        console.log(userDataRef);
-    }, []);
+    let userDataRef = createDemoUserData().then(res=> {
+        console.log(res);
+        userDataRef = res;
+        console.log('res', userDataRef)
+    })
     return (
         <React.Fragment>
             <div className="explore-page-wrapper screen-container">
@@ -16,6 +16,7 @@ export default function Explore() {
                         These recommendations are generated according to your profile
                     </p>
                 </div>
+                { typeof(userDataRef) }
             </div>
         </React.Fragment>
     )
