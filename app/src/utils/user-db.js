@@ -1,7 +1,7 @@
 import { getUserData } from '../api-middleware/github-api';
 
 // Test user data base
-const demoUserNames = ["yashsehgal", "ayushsoni1010", "shristigupta12", "wh0sumit"];
+const demoUserNames = ["yashsehgal", "ayushsoni1010", "shristigupta12"];
 
 async function createDemoUserData() {
     let demoUserDB = [];

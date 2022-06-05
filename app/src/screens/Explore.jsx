@@ -1,12 +1,15 @@
 import React from "react";
 import { createDemoUserData } from "../utils/user-db";
 
+let userDataRef = createDemoUserData().then(res=> {
+    console.log(res);
+    userDataRef = res;
+    console.log('res', userDataRef)
+}).catch(err => {
+    console.log('api error-log', err);
+});
+
 export default function Explore() {
-    let userDataRef = createDemoUserData().then(res=> {
-        console.log(res);
-        userDataRef = res;
-        console.log('res', userDataRef)
-    })
     return (
         <React.Fragment>
             <div className="explore-page-wrapper screen-container">
@@ -16,7 +19,6 @@ export default function Explore() {
                         These recommendations are generated according to your profile
                     </p>
                 </div>
-                { typeof(userDataRef) }
             </div>
         </React.Fragment>
     )
