@@ -14,7 +14,7 @@ export default function Header({HEADER_STATE}) {
     
     const [getStartedButtonModalRef, setGetStartedButtonModal] = useState(false);
 
-    const [headerOptionsRef] = useState([
+    const [headerOptionsRef, setHeaderOptions] = useState([
         { 
             type: 'link', 
             content: 'Stories', 
@@ -31,24 +31,24 @@ export default function Header({HEADER_STATE}) {
                 location: 'https://github.com/yashsehgal/devumble'
             }
         },
-        // {
-        //     type: 'button',
-        //     content: 'Login',
-        //     redirect: {
-        //         typeOf: 'route',
-        //         location: '/login'
-        //     },
-        //     buttonType: 'secondary'
-        // },
-        // {
-        //     type: 'button',
-        //     content: 'Get Started',
-        //     redirect: {
-        //         typeOf: 'route',
-        //         location: '/create-account'
-        //     },
-        //     buttonType: 'solid'
-        // }
+        {
+            type: 'button',
+            content: 'Login',
+            redirect: {
+                typeOf: 'route',
+                location: '/login'
+            },
+            buttonType: 'secondary'
+        },
+        {
+            type: 'button',
+            content: 'Get Started',
+            redirect: {
+                typeOf: 'route',
+                location: '/create-account'
+            },
+            buttonType: 'solid'
+        }
     ]);
     if (HEADER_STATE === 'logged-in') {
         return (

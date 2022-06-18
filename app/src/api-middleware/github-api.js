@@ -93,16 +93,16 @@ async function getUserData_fromGitHub_forDevumbleProfile(username=null) {
     } else {
         response = {
             data: {
-                username: githubResponse.login,
-                displayName: githubResponse.name,
-                avatar_url: githubResponse.avatar_url,
+                username: githubResponse?.login,
+                displayName: githubResponse?.name,
+                avatar_url: githubResponse?.avatar_url,
                 connectionStatus: {
-                    followersCount: githubResponse.followers,
-                    followingCount: githubResponse.following
+                    followersCount: githubResponse?.followers,
+                    followingCount: githubResponse?.following
                 },
-                website: (githubResponse.blog !== "" || githubResponse.blog !== null) ? githubResponse.blog : null,
-                location: (githubResponse.location !== "" || githubResponse.location !== null) ? githubResponse.location : null,
-                githubProfileURL: (githubResponse.html_url !== "" || githubResponse.html_url !== null) ? githubResponse.html_url : null
+                website: githubResponse.blog?.blog,
+                location: githubResponse?.location,
+                githubProfileURL: githubResponse?.html_url
             },
             message: true
         }
