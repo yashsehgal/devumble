@@ -22,7 +22,11 @@ export default function AddPhotos() {
                 </div>
             </div>
             <div className="mt-8" />
-            <button className="p-2 text-gray-500 font-normal text-sm block mx-auto hover:text-white">Skip the step</button>
+            <button className="p-2 text-gray-500 font-normal text-sm block mx-auto hover:text-white"
+                onClick={() => {
+                    window.location.href = "/explore";                    
+                }}
+            >Skip the step</button>
         </div>
     )
 }
