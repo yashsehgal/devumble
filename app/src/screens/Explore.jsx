@@ -40,7 +40,7 @@ export default function Explore() {
                         {userDataRef.length!==0 ? userDataRef.map((recommenedUser, userIndex) => {
                             let recommendingUser = recommenedUser.data;
                             return (
-                                <TinderCard onSwipe={onCardSwipe} onCardLeftScreen={() => onCardLeftScreen('fooBar')} preventSwipe={['up', 'down']} key={userIndex}>
+                                <TinderCard onSwipe={onCardSwipe} preventSwipe={['up', 'down']} key={userIndex}>
                                     <div className="recommended-user-card absolute w-[420px] h-[400px] px-5 pr-24 pt-6 pb-3 flex flex-row items-start transition-all rounded-md bg-white text-black" >
                                         <div className="recommended-user-content-wrapper">
                                             {
