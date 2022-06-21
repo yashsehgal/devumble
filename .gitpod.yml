@@ -4,4 +4,4 @@
 
 tasks:
   - init: cd app && npm install --save-dev && npm run build
-    command: npm run start
+    command: cd app && npm run start
