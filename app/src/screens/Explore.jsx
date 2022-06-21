@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { createDemoUserData } from "../utils/user-db";
 
+import { frequentLanguages } from '../api-middleware/frequent-langauges';
+
 import TinderCard from 'react-tinder-card';
 
 // let userDataRef = [];
@@ -36,21 +38,21 @@ export default function Explore() {
                     </p>
                 </div>
                 <div className="recommendations-section-container mt-12 w-fit mx-auto">
-                    <div className="relative flex flex-row items-stretch">
+                    <div className="relative ">
                         {userDataRef.length!==0 ? userDataRef.map((recommenedUser, userIndex) => {
                             let recommendingUser = recommenedUser.data;
                             return (
                                 <TinderCard onSwipe={onCardSwipe} preventSwipe={['up', 'down']} key={userIndex}>
-                                    <div className="recommended-user-card absolute w-[420px] h-[400px] px-5 pr-24 pt-6 pb-3 flex flex-row items-start transition-all rounded-md bg-white text-black" >
+                                    <div className="recommended-user-card absolute top-0 left-0 w-[380px] h-[240px] overflow-y-scroll overflow-x-hidden px-5 pr-24 pt-6 pb-6 flex flex-row items-start transition-all rounded-md bg-white text-black" >
                                         <div className="recommended-user-content-wrapper">
                                             {
                                                 recommendingUser.login.toString().toLowerCase() === 'yashsehgal'
-                                                    ? <p className="leading-snug text-sm px-4 py-1 font-semibold text-white bg-purple-900 w-fit h-fit rounded-full">The God</p>
+                                                    ? <p className="leading-snug text-sm px-4 py-1 font-semibold text-white bg-purple-900 w-fit h-fit rounded-full mb-4">The God</p>
                                                     : <React.Fragment></React.Fragment>
                                             }
                                             <img src={recommendingUser.avatar_url} 
                                                 alt={`${recommendingUser.login}-avatar`} 
-                                                className="w-24 h-24 rounded-full mx-auto"
+                                                className="w-24 h-24 rounded-full"
                                             />
                                             <h1 className="leading-snug text-lg text-black font-semibold mt-2">{recommendingUser.login}</h1>
                                             {
@@ -60,7 +62,7 @@ export default function Explore() {
                                             }
                                             {
                                                 recommendingUser.login.toString().toLowerCase() === 'yashsehgal'
-                                                    ? <p className="leading-snug text-sm font-normal text-gray-500">You don't have to swipe anywhere. The god has already been matched to your profile</p>
+                                                    ? <p className="leading-snug text-sm font-normal text-gray-500 mt-2">You don't have to swipe anywhere. The god has already been matched to your profile</p>
                                                     : <React.Fragment></React.Fragment>
                                             }
                                         </div>
