@@ -30,9 +30,14 @@ function setLoggedInStatus_toLocalStorage(status=false) {
     localStorage.setItem('isLoggedIn', status);
 }
 
+function getLoggedInStatus_fromLocalStorage() {
+    return localStorage.getItem('isLoggedIn');
+}
+
 export { 
     saveUserData_inLocalStorage_fromGitHub_forDevumbleProfile, 
     getUserData_fromLocalStorage_forDevumbleProfile, 
     setLoggedInStatus_toLocalStorage,
-    saveDataToLocalStorage
+    getLoggedInStatus_fromLocalStorage,
+    saveDataToLocalStorage,
 };

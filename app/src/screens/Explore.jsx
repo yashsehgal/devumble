@@ -5,14 +5,6 @@ import { frequentLanguages } from '../api-middleware/frequent-langauges';
 
 import TinderCard from 'react-tinder-card';
 
-// let userDataRef = [];
-// userDataRef = createDemoUserData().then(res=> {
-//     userDataRef = res;
-//     console.log('res', userDataRef)
-// }).catch(err => {
-//     console.log('api error-log', err);
-// });
-
 export default function Explore() {
     const [userDataRef, setUserData] = useState([]);
     useEffect(() => {
@@ -38,12 +30,12 @@ export default function Explore() {
                     </p>
                 </div>
                 <div className="recommendations-section-container mt-12 w-fit mx-auto">
-                    <div className="relative ">
+                    <div className="absolute mx-auto">
                         {userDataRef.length!==0 ? userDataRef.map((recommenedUser, userIndex) => {
                             let recommendingUser = recommenedUser.data;
                             return (
                                 <TinderCard onSwipe={onCardSwipe} preventSwipe={['up', 'down']} key={userIndex}>
-                                    <div className="recommended-user-card absolute top-0 left-0 w-[380px] h-[240px] overflow-y-scroll overflow-x-hidden px-5 pr-24 pt-6 pb-6 flex flex-row items-start transition-all rounded-md bg-white text-black" >
+                                    <div className="recommended-user-card w-[380px] h-[240px] overflow-y-scroll overflow-x-hidden px-5 pr-24 pt-6 pb-6 flex flex-row items-start transition-all rounded-md bg-white text-black" >
                                         <div className="recommended-user-content-wrapper">
                                             {
                                                 recommendingUser.login.toString().toLowerCase() === 'yashsehgal'

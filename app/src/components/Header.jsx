@@ -1,14 +1,16 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { FaArrowRight, FaTimes } from 'react-icons/fa';
 
 import ReactModal from 'react-modal';
+import { getLoggedInStatus_fromLocalStorage } from '../utils/local-storage';
 
 ReactModal.setAppElement('#root');
 
 export default function Header({HEADER_STATE}) {
+    
     const solidButton = "leading-snug text-white px-4 py-2 font-semibold gradient rounded-md flex flex-row items-center justify-center";
     const secondaryButton = "leading-snug text-white px-4 py-2 font-semibold bg-white bg-opacity-50 hover:bg-opacity-60 rounded-md flex flex-row items-center justify-center";
     
