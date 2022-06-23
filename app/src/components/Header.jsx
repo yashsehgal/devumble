@@ -1,11 +1,10 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { FaArrowRight, FaTimes } from 'react-icons/fa';
 
 import ReactModal from 'react-modal';
-import { getLoggedInStatus_fromLocalStorage } from '../utils/local-storage';
 
 ReactModal.setAppElement('#root');
 
@@ -16,7 +15,7 @@ export default function Header({HEADER_STATE}) {
     
     const [getStartedButtonModalRef, setGetStartedButtonModal] = useState(false);
 
-    const [headerOptionsRef, setHeaderOptions] = useState([
+    const [headerOptionsRef] = useState([
         { 
             type: 'link', 
             content: 'Stories', 
@@ -70,7 +69,7 @@ export default function Header({HEADER_STATE}) {
                                                     {
                                                         option.redirect.typeOf === 'route' 
                                                             ? <Link to={option.redirect.location}>{option.content}</Link>
-                                                            : <a href={option.redirect.location} target="_blank">{option.content}</a>
+                                                            : <a href={option.redirect.location} target="_blank" rel="noreferrer">{option.content}</a>
                                                     }
                                                 </li>
                                             </React.Fragment>

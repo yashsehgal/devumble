@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { createDemoUserData } from "../utils/user-db";
 
-import { frequentLanguages } from '../api-middleware/frequent-langauges';
 
 import TinderCard from 'react-tinder-card';
+import { getLoggedInStatus_fromLocalStorage } from "../utils/local-storage";
 
 export default function Explore() {
     const [userDataRef, setUserData] = useState([]);

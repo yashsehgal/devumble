@@ -6,20 +6,20 @@ async function fetchAllRepositories(username=null) {
 
     // fetching all the repositories of the 
     // particular username, for computing languages used
-    let langugesArray = [];
-    const res = await fetch(BASE_URL_FOR_REPOS + `${username}` + '/repos');
+    let repositoriesArray = [];
+    const res = await fetch(BASE_URL_FOR_REPOS + username + '/repos');
     const userRepositoriesResponse = await res.json();
 
     if (userRepositoriesResponse.message && userRepositoriesResponse.message.toLowerCase() === "not found") {
         return false;
     } else {
-        console.log(userRepositoriesResponse);
+        userRepositoriesResponse.map((repos) => repositoriesArray.push(repos));
     }
+    return userRepositoriesResponse;
 }
 
 function frequentLanguages(username=null) {
     if (!username) return;
-    let languagesArrayResponse = fetchAllRepositories(username);
 }
 
 export {

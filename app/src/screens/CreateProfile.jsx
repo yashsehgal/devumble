@@ -6,7 +6,7 @@ import { checkIfStringNull } from "../utils/NullCheck";
 import { ToastContainer, toast } from 'react-toastify';
 
 export default function CreateProfile() {
-    const [tempUserDataFromLocalStorageRef, setTempUserDataFromLocalStorage] = useState(getUserData_fromLocalStorage_forDevumbleProfile());
+    const [tempUserDataFromLocalStorageRef] = useState(getUserData_fromLocalStorage_forDevumbleProfile());
     const notifier = (message, type) => {
         switch(type) {
             case "success": 

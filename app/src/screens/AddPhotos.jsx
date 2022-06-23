@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { getUserData_fromLocalStorage_forDevumbleProfile } from "../utils/local-storage";
 
 export default function AddPhotos() {
-    const [tempUserDataFromLocalStorageRef, setTempUserDataFromLocalStorage] = useState(getUserData_fromLocalStorage_forDevumbleProfile());
+    const [tempUserDataFromLocalStorageRef] = useState(getUserData_fromLocalStorage_forDevumbleProfile());
     return (
         <div className="add-photos-wrapper screen-container">
             <div className="hero-section-content-wrapper">
